@@ -1,0 +1,5 @@
+# Build inputs and intermediates — only needed when regenerating the font.
+# Everything consumers need is baked into lib/src/*.g.dart.
+assets/
+tool/
+test/

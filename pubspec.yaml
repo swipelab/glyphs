@@ -1,0 +1,36 @@
+name: glyphs
+description: >-
+  Optically centered icon glyphs for Flutter, built from Font Awesome Free 7.x.
+  Ships three TrueType fonts (solid, regular, brands) plus a Glyph widget that
+  can blend between font-native and mass-centered rendering at the call site.
+version: 0.0.1
+repository: https://github.com/swipelab/glyphs
+issue_tracker: https://github.com/swipelab/glyphs/issues
+
+environment:
+  sdk: ^3.11.3
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+# Generated font assets — see tool/build_font.dart
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  path_drawing: ^1.0.1
+
+flutter:
+  fonts:
+    - family: GlyphsSolid
+      fonts:
+        - asset: lib/fonts/GlyphsSolid.ttf
+    - family: GlyphsRegular
+      fonts:
+        - asset: lib/fonts/GlyphsRegular.ttf
+    - family: GlyphsBrands
+      fonts:
+        - asset: lib/fonts/GlyphsBrands.ttf
