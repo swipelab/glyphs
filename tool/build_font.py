@@ -87,7 +87,18 @@ def build_style(style):
     fb.setupGlyf(glyphs)
     fb.setupHorizontalMetrics({g: (advances[g], 0) for g in glyph_order})
     fb.setupHorizontalHeader(ascent=EM, descent=0)
-    fb.setupOS2(sTypoAscender=EM, usWinAscent=EM, usWinDescent=0)
+    # Explicitly zero sTypoDescender and sTypoLineGap. fontTools defaults
+    # them to non-zero (typically -EM/4 / +EM/10), which makes Flutter's
+    # Icon widget place the baseline above the box bottom — every glyph
+    # ends up rendered in the upper portion of the size×size box and looks
+    # vertically off-center.
+    fb.setupOS2(
+        sTypoAscender=EM,
+        sTypoDescender=0,
+        sTypoLineGap=0,
+        usWinAscent=EM,
+        usWinDescent=0,
+    )
     fb.setupNameTable({"familyName": family, "styleName": "Regular"})
     fb.setupPost()
 

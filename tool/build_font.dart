@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+//
 // Builds the glyph fonts from assets/svgs/.
 //
 // Run from package root:
@@ -24,44 +26,56 @@ const _offsetsJson = 'assets/offsets.json';
 const _pythonScript = 'tool/build_font.py';
 const _measureScript = 'tool/measure_offsets.dart';
 
-// (family, baseCodepoint, rangeSize)
-const _styles = <String, (String, int, int)>{
-  'solid': ('GlyphsSolid', 0xE000, 0x0C00), // E000-EBFF (3072)
-  'regular': ('GlyphsRegular', 0xEC00, 0x0300), // EC00-EEFF (768)
-  'brands': ('GlyphsBrands', 0xEF00, 0x0A00), // EF00-F8FF (2560)
+// Style -> font family. Base codepoints and range sizes are derived from
+// the actual SVG counts at build time, packed sequentially starting at the
+// Unicode Private Use Area (U+E000).
+const _styles = <String, String>{
+  'solid': 'GlyphsSolid',
+  'regular': 'GlyphsRegular',
+  'brands': 'GlyphsBrands',
 };
 
 Future<void> main() async {
   await _checkPython();
 
-  // 1. Hash-assign codepoints per style.
-  final assigned = <String, Map<String, int>>{};
-  for (final entry in _styles.entries) {
-    final style = entry.key;
-    final (_, base, range) = entry.value;
+  // 1. Discover SVGs and allocate (base, range) per style from counts.
+  const puaStart = 0xE000; // Unicode Private Use Area.
+  final names = <String, List<String>>{};
+  final bases = <String, int>{};
+  final ranges = <String, int>{};
+  var cursor = puaStart;
+  for (final style in _styles.keys) {
     final dir = Directory('$_svgRoot/$style');
     if (!dir.existsSync()) {
       stderr.writeln('ERROR: missing $_svgRoot/$style');
       exit(2);
     }
-    final names = dir
+    final list = dir
         .listSync()
         .whereType<File>()
         .where((f) => f.path.endsWith('.svg'))
         .map((f) => f.uri.pathSegments.last.replaceAll('.svg', ''))
         .toList()
       ..sort();
+    names[style] = list;
+    bases[style] = cursor;
+    ranges[style] = list.length;
+    cursor += list.length;
+    final lo = bases[style]!.toRadixString(16).toUpperCase();
+    final hi = (cursor - 1).toRadixString(16).toUpperCase();
+    print('  $style: ${list.length} icons (U+$lo..U+$hi)');
+  }
 
-    if (names.length > range) {
-      stderr.writeln(
-        'ERROR: $style has ${names.length} icons but range is only $range slots',
-      );
-      exit(2);
-    }
+  // 2. Hash-assign codepoints per style.
+  final assigned = <String, Map<String, int>>{};
+  for (final style in _styles.keys) {
+    final base = bases[style]!;
+    final range = ranges[style]!;
+    final list = names[style]!;
 
     final taken = <int>{};
     final out = <String, int>{};
-    for (final name in names) {
+    for (final name in list) {
       var slot = _fnv1a(name) % range;
       while (taken.contains(slot)) {
         slot = (slot + 1) % range;
@@ -70,7 +84,6 @@ Future<void> main() async {
       out[name] = base + slot;
     }
     assigned[style] = out;
-    print('  $style: ${names.length} icons assigned');
   }
 
   // 2. Persist codepoints.json (sorted by name for stable diffs).
@@ -94,10 +107,10 @@ Future<void> main() async {
       for (final e in _styles.entries)
         {
           'name': e.key,
-          'family': e.value.$1,
+          'family': e.value,
           'svgDir': '$_svgRoot/${e.key}',
           'codepoints': assigned[e.key],
-          'outPath': '$_fontsDir/${e.value.$1}.ttf',
+          'outPath': '$_fontsDir/${e.value}.ttf',
         },
     ],
   };
@@ -141,7 +154,7 @@ Future<void> main() async {
   final offEntries = offsetsRaw.entries.toList()
     ..sort((a, b) => a.key.compareTo(b.key));
   for (final e in offEntries) {
-    final cp = int.parse((e.key as String).substring(2), radix: 16);
+    final cp = int.parse(e.key.substring(2), radix: 16);
     final v = e.value as List<dynamic>;
     offBuf.writeln(
       '  0x${cp.toRadixString(16)}: Offset(${v[0]}, ${v[1]}),',
@@ -157,8 +170,8 @@ Future<void> main() async {
       for (final e in _styles.entries)
         {
           'name': e.key,
-          'family': e.value.$1,
-          'asset': '$_fontsDir/${e.value.$1}.ttf',
+          'family': e.value,
+          'asset': '$_fontsDir/${e.value}.ttf',
           'icons': [
             for (final i
                 in (assigned[e.key]!.entries.toList()
@@ -183,7 +196,7 @@ Future<void> main() async {
     ..writeln();
   for (final e in _styles.entries) {
     final style = e.key;
-    final family = e.value.$1;
+    final family = e.value;
     final className = 'Glyphs${_pascal(style)}';
     buf.writeln('class $className {');
     buf.writeln('  $className._();');
@@ -205,7 +218,7 @@ Future<void> main() async {
   print('');
   print('Add the following to pubspec.yaml under flutter:fonts if not present:');
   for (final e in _styles.entries) {
-    final family = e.value.$1;
+    final family = e.value;
     print('  - family: $family');
     print('    fonts:');
     print('      - asset: $_fontsDir/$family.ttf');
