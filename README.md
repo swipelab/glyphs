@@ -2,18 +2,16 @@
 
 Optically centered icon glyphs for Flutter, built from Font Awesome Free 7.x.
 
-The standard Font Awesome glyphs are designed inside per-icon viewBoxes that
-do not always coincide with the glyph's visual center of mass. When dropped
-into a square `Icon` slot they often look slightly off-axis. This package
-solves that two ways:
+Standard Font Awesome glyphs are designed inside per-icon viewBoxes that do
+not coincide with the glyph's visual center. Dropped into a circular FAB or
+square `Icon` slot they often look slightly off-axis. This package solves
+that with **per-glyph minimum-enclosing-circle (MEC) center baking**: each
+glyph is shifted at font-build time so its MEC center lands at the viewBox
+center. The result: every extreme ink point sits on the same circle, so the
+glyph is equally distant from any larger concentric container.
 
-1. **A custom TrueType font per Font Awesome style** — `GlyphsSolid`,
-   `GlyphsRegular`, `GlyphsBrands` — with every glyph re-fit into a 1000-unit
-   em square, centered on its viewBox.
-2. **A `Glyph` widget** that can additionally shift the rendered icon toward
-   its **mass center** at draw time, using a per-glyph correction table baked
-   from the source SVGs. The shift is interpolated by a `blend` parameter so
-   you can pick the amount of correction per call site.
+`Icon` (Flutter's standard widget) renders glyphs from this font correctly
+with no wrapping widget — the centering is part of the font itself.
 
 ## Installation
 
@@ -27,31 +25,33 @@ dependencies:
 ## Usage
 
 ```dart
+import 'package:flutter/widgets.dart';
 import 'package:glyphs/glyphs.dart';
 
-// blend = 0  → font-native (viewBox center, identical to a regular Icon)
-// blend = 1  → fully mass-centered
-// values in between linearly interpolate the correction.
-Glyph(GlyphsSolid.anchor, size: 32, blend: 1.0)
-Glyph(GlyphsRegular.bell, size: 24, blend: 0.5)
-Glyph(GlyphsBrands.github, size: 20)
+Icon(GlyphsSolid.anchor, size: 32)
+Icon(GlyphsRegular.bell, size: 24)
+Icon(GlyphsBrands.github, size: 20)
 ```
 
-`Glyph` extends `StatelessWidget` and renders a regular Flutter `Icon`
-internally, so `find.byIcon`, `IconButton`, `ListTile.leading` and friends
-all work as expected. The optical correction is applied via a single
-`Transform.translate`.
+`find.byIcon`, `IconButton`, `ListTile.leading` and friends all work as
+expected — the package doesn't introduce any custom widgets.
 
 ## How the correction is computed
 
-Each SVG is rasterized at 256×256, the alpha channel is integrated to find
-the visual mass centroid, and the offset from the box center is recorded as
-two `em`-fractions (`dx`, `dy`). At paint time the `Glyph` widget shifts the
-icon by `Offset(dx * blend * size, dy * blend * size)`. Entries with a
-correction below ~0.5px are skipped.
+Each glyph is rasterized at 256 px in a 512 px canvas (so heavily-shifted
+glyphs don't clip). The ink silhouette is extracted, then **Welzl's
+algorithm** computes the minimum enclosing circle. The offset from canvas
+center to MEC center is recorded as two em-fractions (`dx`, `dy`).
 
-The full table lives at [`assets/offsets.json`](assets/offsets.json) and is
-mirrored as Dart constants in `lib/src/glyph_offsets.g.dart`.
+At font-build time `tool/build_font.py` bakes those offsets into each
+glyph: vertical shifts are applied via the path transform, horizontal
+shifts via the left side bearing (because Flutter/HarfBuzz re-anchors
+single glyphs to `origin + lsb` at render time, so a horizontal path
+shift on its own would be discarded).
+
+The full offset table lives at [`assets/offsets.json`](assets/offsets.json)
+and is mirrored as Dart constants in `lib/src/glyph_offsets.g.dart` for
+inspection — runtime rendering does not consume it.
 
 ## Rebuilding the font
 
@@ -67,9 +67,10 @@ The build:
    probing). The result is deterministic across machines.
 2. Calls `tool/build_font.py` (uses `fontTools`) to compile each style into
    a TTF, converting cubic outlines to quadratics.
-3. Runs `flutter test tool/measure_offsets.dart` to compute the mass-center
-   correction table.
-4. Regenerates `lib/src/glyphs.g.dart` and `lib/src/glyph_offsets.g.dart`.
+3. Runs `flutter test tool/measure_offsets.dart` to compute the MEC-center
+   correction table via Welzl's algorithm.
+4. Re-runs the python build with the offsets baked in (pass 2).
+5. Regenerates `lib/src/glyphs.g.dart` and `lib/src/glyph_offsets.g.dart`.
 
 ### System requirements
 

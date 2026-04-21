@@ -2864,5 +2864,11 @@
     "zhihu": "0xEA23",
     "zoom": "0xEA2C",
     "zulip": "0xEA3E"
+  },
+  "cupertino": {
+    "checkmark-alt": "0xEB2C",
+    "clock": "0xEB2D",
+    "exclamationmark-triangle-fill": "0xEB2E",
+    "pencil": "0xEB2F"
   }
 }

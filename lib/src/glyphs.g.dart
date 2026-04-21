@@ -2873,3 +2873,11 @@ class GlyphsBrands {
   static const IconData zulip = IconData(0xea3e, fontFamily: 'GlyphsBrands', fontPackage: 'glyphs');
 }
 
+class GlyphsCupertino {
+  GlyphsCupertino._();
+  static const IconData checkmark_alt = IconData(0xeb2c, fontFamily: 'GlyphsCupertino', fontPackage: 'glyphs');
+  static const IconData clock = IconData(0xeb2d, fontFamily: 'GlyphsCupertino', fontPackage: 'glyphs');
+  static const IconData exclamationmark_triangle_fill = IconData(0xeb2e, fontFamily: 'GlyphsCupertino', fontPackage: 'glyphs');
+  static const IconData pencil = IconData(0xeb2f, fontFamily: 'GlyphsCupertino', fontPackage: 'glyphs');
+}
+

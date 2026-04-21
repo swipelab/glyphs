@@ -11460,6 +11460,29 @@
           "codepoint": "0xEA3E"
         }
       ]
+    },
+    {
+      "name": "cupertino",
+      "family": "GlyphsCupertino",
+      "asset": "lib/fonts/GlyphsCupertino.ttf",
+      "icons": [
+        {
+          "name": "checkmark-alt",
+          "codepoint": "0xEB2C"
+        },
+        {
+          "name": "clock",
+          "codepoint": "0xEB2D"
+        },
+        {
+          "name": "exclamationmark-triangle-fill",
+          "codepoint": "0xEB2E"
+        },
+        {
+          "name": "pencil",
+          "codepoint": "0xEB2F"
+        }
+      ]
     }
   ]
 }

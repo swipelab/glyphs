@@ -34,3 +34,6 @@ flutter:
     - family: GlyphsBrands
       fonts:
         - asset: lib/fonts/GlyphsBrands.ttf
+    - family: GlyphsCupertino
+      fonts:
+        - asset: lib/fonts/GlyphsCupertino.ttf
