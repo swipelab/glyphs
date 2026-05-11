@@ -2870,5 +2870,11 @@
     "clock": "0xEB2D",
     "exclamationmark-triangle-fill": "0xEB2E",
     "pencil": "0xEB2F"
+  },
+  "custom": {
+    "tool_eraser": "0xEB30",
+    "tool_marker": "0xEB32",
+    "tool_neon": "0xEB31",
+    "tool_pen": "0xEB33"
   }
 }

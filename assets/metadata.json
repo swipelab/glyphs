@@ -11483,6 +11483,29 @@
           "codepoint": "0xEB2F"
         }
       ]
+    },
+    {
+      "name": "custom",
+      "family": "GlyphsCustom",
+      "asset": "lib/fonts/GlyphsCustom.ttf",
+      "icons": [
+        {
+          "name": "tool_eraser",
+          "codepoint": "0xEB30"
+        },
+        {
+          "name": "tool_marker",
+          "codepoint": "0xEB32"
+        },
+        {
+          "name": "tool_neon",
+          "codepoint": "0xEB31"
+        },
+        {
+          "name": "tool_pen",
+          "codepoint": "0xEB33"
+        }
+      ]
     }
   ]
 }

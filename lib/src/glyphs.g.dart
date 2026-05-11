@@ -2881,3 +2881,11 @@ class GlyphsCupertino {
   static const IconData pencil = IconData(0xeb2f, fontFamily: 'GlyphsCupertino', fontPackage: 'glyphs');
 }
 
+class GlyphsCustom {
+  GlyphsCustom._();
+  static const IconData tool_eraser = IconData(0xeb30, fontFamily: 'GlyphsCustom', fontPackage: 'glyphs');
+  static const IconData tool_marker = IconData(0xeb32, fontFamily: 'GlyphsCustom', fontPackage: 'glyphs');
+  static const IconData tool_neon = IconData(0xeb31, fontFamily: 'GlyphsCustom', fontPackage: 'glyphs');
+  static const IconData tool_pen = IconData(0xeb33, fontFamily: 'GlyphsCustom', fontPackage: 'glyphs');
+}
+

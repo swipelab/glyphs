@@ -38,6 +38,13 @@ include a visible acknowledgment such as:
 > Icons by Font Awesome (https://fontawesome.com), licensed under
 > CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
 
+## Custom glyphs (`GlyphsCustom`)
+
+The four glyphs under `assets/svgs/custom/` (`tool_pen`, `tool_marker`,
+`tool_neon`, `tool_eraser`) are original SVG silhouettes drawn for this
+package. They are **not** derived from Font Awesome or any third-party
+icon set. Licensed alongside the package source under MIT.
+
 ## Trademarks
 
 "Font Awesome" is a trademark of Fonticons, Inc. This package is **not**

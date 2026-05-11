@@ -34,6 +34,7 @@ const _styles = <String, String>{
   'regular': 'GlyphsRegular',
   'brands': 'GlyphsBrands',
   'cupertino': 'GlyphsCupertino',
+  'custom': 'GlyphsCustom',
 };
 
 Future<void> main() async {

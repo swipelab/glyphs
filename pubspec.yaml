@@ -37,3 +37,6 @@ flutter:
     - family: GlyphsCupertino
       fonts:
         - asset: lib/fonts/GlyphsCupertino.ttf
+    - family: GlyphsCustom
+      fonts:
+        - asset: lib/fonts/GlyphsCustom.ttf

@@ -1,3 +1,9 @@
+## Unreleased
+
+- New `GlyphsCustom` family with original tool-tip silhouettes
+  (`tool_pen`, `tool_marker`, `tool_neon`, `tool_eraser`) for in-app
+  drawing toolbars. Glyphs are not derived from Font Awesome.
+
 ## 0.0.1
 
 Initial release.
