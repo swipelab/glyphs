@@ -40,3 +40,6 @@ flutter:
     - family: GlyphsCustom
       fonts:
         - asset: lib/fonts/GlyphsCustom.ttf
+    - family: GlyphsSymbols
+      fonts:
+        - asset: lib/fonts/GlyphsSymbols.ttf

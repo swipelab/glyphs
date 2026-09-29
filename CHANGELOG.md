@@ -3,6 +3,10 @@
 - New `GlyphsCustom` family with original tool-tip silhouettes
   (`tool_pen`, `tool_marker`, `tool_neon`, `tool_eraser`) for in-app
   drawing toolbars. Glyphs are not derived from Font Awesome.
+- New `GlyphsSymbols` family: the Material Symbols Rounded glyphs named in
+  `tool/symbols.txt` (Version 2.972, FILL 0, wght 400, GRAD 0, opsz 24), at
+  their upstream placement, extracted by `tool/extract_symbols.py`.
+  Apache 2.0.
 
 ## 0.0.1
 

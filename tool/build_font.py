@@ -2,7 +2,8 @@
 """Build TTF icon fonts from SVG sources. Invoked by tool/build_font.dart.
 
 Reads a JSON spec on argv[1]:
-  {"styles": [{"name", "family", "svgDir", "codepoints": {name: cp}, "outPath"}]}
+  {"styles": [{"name", "family", "svgDir", "codepoints": {name: cp}, "outPath",
+               "upstreamEm"?, "offsets"?}]}
 """
 import json
 import re
@@ -35,12 +36,16 @@ def build_style(style):
     codepoints = {k: int(v) for k, v in style["codepoints"].items()}
     out_path = Path(style["outPath"])
     offsets = style.get("offsets") or {}  # {hex_cp: [dx, dy]} mass-center corrections
+    # A style with an upstream em keeps its upstream geometry: outlines stay in
+    # upstream units, and each glyph's lsb is its outline's own xMin.
+    upstream = "upstreamEm" in style
+    em = style.get("upstreamEm", EM)
 
-    fb = FontBuilder(EM, isTTF=True)
+    fb = FontBuilder(em, isTTF=True)
 
     glyph_order = [".notdef"]
     glyphs = {".notdef": TTGlyphPen(None).glyph()}
-    advances = {".notdef": EM}
+    advances = {".notdef": em}
     lsbs = {".notdef": 0}
     cmap = {}
 
@@ -62,9 +67,9 @@ def build_style(style):
             continue
 
         # SVG (y-down) → font (y-up), centered, longest side fits em.
-        scale = EM / max(vb_w, vb_h)
-        tx = (EM - vb_w * scale) / 2
-        ty = (EM - vb_h * scale) / 2
+        scale = em / max(vb_w, vb_h)
+        tx = (em - vb_w * scale) / 2
+        ty = (em - vb_h * scale) / 2
 
         # Bake per-glyph centering correction:
         #
@@ -81,10 +86,10 @@ def build_style(style):
         lsb = 0
         if cp_hex in offsets:
             dx, dy = offsets[cp_hex]
-            lsb = int(round(dx * EM))
-            ty += dy * EM
+            lsb = int(round(dx * em))
+            ty += dy * em
 
-        t = Transform(scale, 0, 0, -scale, tx, EM - ty)
+        t = Transform(scale, 0, 0, -scale, tx, em - ty)
 
         glyph_name = f"u{cp:04X}"
         pen = TTGlyphPen(None)
@@ -98,9 +103,13 @@ def build_style(style):
             skipped += 1
             continue
 
-        glyphs[glyph_name] = pen.glyph()
+        glyph = pen.glyph()
+        if upstream:
+            glyph.recalcBounds(None)
+            lsb = glyph.xMin
+        glyphs[glyph_name] = glyph
         glyph_order.append(glyph_name)
-        advances[glyph_name] = EM
+        advances[glyph_name] = em
         lsbs[glyph_name] = lsb
         cmap[cp] = glyph_name
 
@@ -108,7 +117,7 @@ def build_style(style):
     fb.setupCharacterMap(cmap)
     fb.setupGlyf(glyphs)
     fb.setupHorizontalMetrics({g: (advances[g], lsbs[g]) for g in glyph_order})
-    fb.setupHorizontalHeader(ascent=EM, descent=0)
+    fb.setupHorizontalHeader(ascent=em, descent=0)
     # Deterministic head: fontTools defaults created/modified to time.time(),
     # which makes every build byte-different and invalidates downstream
     # golden tests even when glyph outlines are unchanged. Pin both to the
@@ -120,10 +129,10 @@ def build_style(style):
     # ends up rendered in the upper portion of the size×size box and looks
     # vertically off-center.
     fb.setupOS2(
-        sTypoAscender=EM,
+        sTypoAscender=em,
         sTypoDescender=0,
         sTypoLineGap=0,
-        usWinAscent=EM,
+        usWinAscent=em,
         usWinDescent=0,
     )
     fb.setupNameTable({"familyName": family, "styleName": "Regular"})

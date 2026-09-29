@@ -31,10 +31,34 @@ import 'package:glyphs/glyphs.dart';
 Icon(GlyphsSolid.anchor, size: 32)
 Icon(GlyphsRegular.bell, size: 24)
 Icon(GlyphsBrands.github, size: 20)
+Icon(GlyphsSymbols.arrow_back_ios_new, size: 24)
 ```
 
 `find.byIcon`, `IconButton`, `ListTile.leading` and friends all work as
 expected — the package doesn't introduce any custom widgets.
+
+## Material Symbols (`GlyphsSymbols`)
+
+`GlyphsSymbols` carries the Material Symbols Rounded glyphs named in
+[`tool/symbols.txt`](tool/symbols.txt), under their upstream names. They are
+the upstream variable font's default instance: FILL 0, wght 400, GRAD 0,
+opsz 24. The font is static, so `Icon`'s `fill`, `weight`, `grade` and
+`opticalSize` do not change it.
+
+The family is not MEC-centered. It keeps the upstream placement: the font
+uses the upstream 960-unit em and outline coordinates, and each glyph's left
+side bearing is its outline's own `xMin`, so a glyph inks where Material
+Symbols Rounded inks it on its 24 dp grid.
+
+`tool/extract_symbols.py` writes the SVGs from the upstream
+`MaterialSymbolsRounded[FILL,GRAD,opsz,wght].ttf`, with its `.codepoints` file
+beside it (both in `variablefont/` of
+[google/material-design-icons](https://github.com/google/material-design-icons)):
+
+```bash
+python3 tool/extract_symbols.py '/path/to/MaterialSymbolsRounded[FILL,GRAD,opsz,wght].ttf'
+dart run tool/build_font.dart
+```
 
 ## How the correction is computed
 
@@ -101,9 +125,16 @@ made.
 This package is not affiliated with, endorsed by, or sponsored by Fonticons,
 Inc.
 
+`GlyphsSymbols` glyphs are derived from **Material Symbols Rounded** by
+Google LLC, licensed under the
+[Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0). See
+[NOTICE.md](NOTICE.md) for the source version and the changes made.
+
 ## License
 
 - Code: MIT
-- Icon artwork (SVGs and compiled glyph outlines): CC BY 4.0
+- Font Awesome icon artwork (SVGs and compiled glyph outlines): CC BY 4.0
+- Material Symbols icon artwork (`assets/svgs/symbols/`,
+  `lib/fonts/GlyphsSymbols.ttf`): Apache 2.0
 
 See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).
