@@ -35,7 +35,11 @@ const _styles = <String, String>{
   'brands': 'GlyphsBrands',
   'cupertino': 'GlyphsCupertino',
   'custom': 'GlyphsCustom',
+  'symbols': 'GlyphsSymbols',
 };
+
+// Styles built in their upstream em, keeping upstream outlines and placement.
+const _upstreamEms = {'symbols': 960};
 
 Future<void> main() async {
   await _checkPython();
@@ -115,6 +119,7 @@ Future<void> main() async {
             'svgDir': '$_svgRoot/${e.key}',
             'codepoints': assigned[e.key],
             'outPath': '$_fontsDir/${e.value}.ttf',
+            'upstreamEm': ?_upstreamEms[e.key],
             'offsets': ?offsets,
           },
       ],
