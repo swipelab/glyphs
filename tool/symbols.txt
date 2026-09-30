@@ -45,6 +45,7 @@ refresh
 download
 share
 picture_in_picture_alt
+visibility
 visibility_off
 person_off
 shield_person
