@@ -23,53 +23,67 @@ void main() {
   testWidgets('GlyphsSymbols.arrow_back_ios_new inks where its outline lies', (
     tester,
   ) async {
-    final svg = File(
-      'assets/svgs/symbols/arrow_back_ios_new.svg',
-    ).readAsStringSync();
-    final outline = parseSvgPathData(
-      RegExp(r'\sd="([^"]+)"').firstMatch(svg)!.group(1)!,
+    await _expectInksItsOutline(
+      tester,
+      'arrow_back_ios_new',
+      GlyphsSymbols.arrow_back_ios_new,
     );
-    final iconKey = GlobalKey();
-    final outlineKey = GlobalKey();
-    await tester.pumpWidget(
-      Directionality(
-        textDirection: TextDirection.ltr,
-        child: Center(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RepaintBoundary(
-                key: iconKey,
-                child: Icon(
-                  GlyphsSymbols.arrow_back_ios_new,
-                  size: _size,
-                  color: _ink,
-                ),
+  });
+
+  testWidgets('GlyphsSymbols.ink_eraser inks where its outline lies', (
+    tester,
+  ) async {
+    await _expectInksItsOutline(tester, 'ink_eraser', GlyphsSymbols.ink_eraser);
+  });
+}
+
+/// Draws [icon] beside the outline of `assets/svgs/symbols/[name].svg` and
+/// expects their ink boxes to agree within a pixel on every edge.
+Future<void> _expectInksItsOutline(
+  WidgetTester tester,
+  String name,
+  IconData icon,
+) async {
+  final svg = File('assets/svgs/symbols/$name.svg').readAsStringSync();
+  final outline = parseSvgPathData(
+    RegExp(r'\sd="([^"]+)"').firstMatch(svg)!.group(1)!,
+  );
+  final iconKey = GlobalKey();
+  final outlineKey = GlobalKey();
+  await tester.pumpWidget(
+    Directionality(
+      textDirection: TextDirection.ltr,
+      child: Center(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RepaintBoundary(
+              key: iconKey,
+              child: Icon(icon, size: _size, color: _ink),
+            ),
+            RepaintBoundary(
+              key: outlineKey,
+              child: CustomPaint(
+                size: const Size.square(_size),
+                painter: _OutlinePainter(outline),
               ),
-              RepaintBoundary(
-                key: outlineKey,
-                child: CustomPaint(
-                  size: const Size.square(_size),
-                  painter: _OutlinePainter(outline),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-    );
+    ),
+  );
 
-    final iconBox = await _inkBox(tester, iconKey);
-    final outlineBox = await _inkBox(tester, outlineKey);
-    for (final (edge, icon, drawn) in [
-      ('left', iconBox.left, outlineBox.left),
-      ('top', iconBox.top, outlineBox.top),
-      ('right', iconBox.right, outlineBox.right),
-      ('bottom', iconBox.bottom, outlineBox.bottom),
-    ]) {
-      expect(icon, closeTo(drawn, 1), reason: '$edge edge');
-    }
-  });
+  final iconBox = await _inkBox(tester, iconKey);
+  final outlineBox = await _inkBox(tester, outlineKey);
+  for (final (edge, drawn, outlined) in [
+    ('left', iconBox.left, outlineBox.left),
+    ('top', iconBox.top, outlineBox.top),
+    ('right', iconBox.right, outlineBox.right),
+    ('bottom', iconBox.bottom, outlineBox.bottom),
+  ]) {
+    expect(drawn, closeTo(outlined, 1), reason: '$name $edge edge');
+  }
 }
 
 class _OutlinePainter extends CustomPainter {
