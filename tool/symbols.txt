@@ -91,3 +91,12 @@ rotate_left
 flip
 aspect_ratio
 check_circle
+content_paste
+text_format
+format_bold
+format_italic
+format_underlined
+strikethrough_s
+code
+link_off
+ink_eraser

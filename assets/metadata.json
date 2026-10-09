@@ -11514,103 +11514,111 @@
       "icons": [
         {
           "name": "add",
-          "codepoint": "0xEB44"
+          "codepoint": "0xEB62"
         },
         {
           "name": "arrow_back_ios_new",
-          "codepoint": "0xEB59"
+          "codepoint": "0xEB41"
         },
         {
           "name": "arrow_upward",
-          "codepoint": "0xEB6C"
+          "codepoint": "0xEB4E"
         },
         {
           "name": "aspect_ratio",
-          "codepoint": "0xEB4A"
+          "codepoint": "0xEB65"
         },
         {
           "name": "bug_report",
-          "codepoint": "0xEB67"
+          "codepoint": "0xEB70"
         },
         {
           "name": "cameraswitch",
-          "codepoint": "0xEB46"
+          "codepoint": "0xEB4C"
         },
         {
           "name": "cancel",
-          "codepoint": "0xEB5D"
+          "codepoint": "0xEB93"
         },
         {
           "name": "chat_bubble",
-          "codepoint": "0xEB78"
+          "codepoint": "0xEB72"
         },
         {
           "name": "check",
-          "codepoint": "0xEB5A"
+          "codepoint": "0xEB89"
         },
         {
           "name": "check_circle",
-          "codepoint": "0xEB47"
+          "codepoint": "0xEB68"
         },
         {
           "name": "checklist",
-          "codepoint": "0xEB87"
+          "codepoint": "0xEB94"
         },
         {
           "name": "chevron_right",
-          "codepoint": "0xEB3E"
+          "codepoint": "0xEB8A"
         },
         {
           "name": "close",
-          "codepoint": "0xEB48"
-        },
-        {
-          "name": "computer",
-          "codepoint": "0xEB7C"
-        },
-        {
-          "name": "content_copy",
-          "codepoint": "0xEB8B"
-        },
-        {
-          "name": "contrast",
-          "codepoint": "0xEB34"
-        },
-        {
-          "name": "crop",
-          "codepoint": "0xEB49"
-        },
-        {
-          "name": "delete",
-          "codepoint": "0xEB4B"
-        },
-        {
-          "name": "description",
           "codepoint": "0xEB85"
         },
         {
-          "name": "devices",
-          "codepoint": "0xEB6A"
+          "name": "code",
+          "codepoint": "0xEB5A"
         },
         {
-          "name": "done",
+          "name": "computer",
+          "codepoint": "0xEB4D"
+        },
+        {
+          "name": "content_copy",
+          "codepoint": "0xEB88"
+        },
+        {
+          "name": "content_paste",
+          "codepoint": "0xEB44"
+        },
+        {
+          "name": "contrast",
+          "codepoint": "0xEB86"
+        },
+        {
+          "name": "crop",
+          "codepoint": "0xEB55"
+        },
+        {
+          "name": "delete",
+          "codepoint": "0xEB87"
+        },
+        {
+          "name": "description",
+          "codepoint": "0xEB49"
+        },
+        {
+          "name": "devices",
           "codepoint": "0xEB52"
         },
         {
+          "name": "done",
+          "codepoint": "0xEB73"
+        },
+        {
           "name": "done_all",
-          "codepoint": "0xEB79"
+          "codepoint": "0xEB69"
         },
         {
           "name": "download",
-          "codepoint": "0xEB54"
+          "codepoint": "0xEB81"
         },
         {
           "name": "draw",
-          "codepoint": "0xEB5B"
+          "codepoint": "0xEB3D"
         },
         {
           "name": "edit",
-          "codepoint": "0xEB63"
+          "codepoint": "0xEB45"
         },
         {
           "name": "edit_square",
@@ -11618,127 +11626,147 @@
         },
         {
           "name": "emoji_emotions",
-          "codepoint": "0xEB64"
+          "codepoint": "0xEB46"
         },
         {
           "name": "emoji_events",
-          "codepoint": "0xEB62"
-        },
-        {
-          "name": "emoji_flags",
-          "codepoint": "0xEB53"
-        },
-        {
-          "name": "emoji_food_beverage",
-          "codepoint": "0xEB42"
-        },
-        {
-          "name": "emoji_nature",
-          "codepoint": "0xEB40"
-        },
-        {
-          "name": "emoji_objects",
-          "codepoint": "0xEB5C"
-        },
-        {
-          "name": "emoji_symbols",
-          "codepoint": "0xEB90"
-        },
-        {
-          "name": "emoji_transportation",
-          "codepoint": "0xEB5E"
-        },
-        {
-          "name": "error",
-          "codepoint": "0xEB8C"
-        },
-        {
-          "name": "expand_less",
-          "codepoint": "0xEB7F"
-        },
-        {
-          "name": "expand_more",
-          "codepoint": "0xEB5F"
-        },
-        {
-          "name": "flash_on",
-          "codepoint": "0xEB57"
-        },
-        {
-          "name": "flip",
-          "codepoint": "0xEB41"
-        },
-        {
-          "name": "folder",
-          "codepoint": "0xEB70"
-        },
-        {
-          "name": "format_align_center",
-          "codepoint": "0xEB69"
-        },
-        {
-          "name": "format_align_left",
-          "codepoint": "0xEB43"
-        },
-        {
-          "name": "format_align_right",
-          "codepoint": "0xEB4E"
-        },
-        {
-          "name": "format_size",
-          "codepoint": "0xEB35"
-        },
-        {
-          "name": "forward",
           "codepoint": "0xEB3B"
         },
         {
-          "name": "group_add",
-          "codepoint": "0xEB76"
+          "name": "emoji_flags",
+          "codepoint": "0xEB91"
         },
         {
-          "name": "image",
-          "codepoint": "0xEB3F"
-        },
-        {
-          "name": "info",
-          "codepoint": "0xEB7D"
-        },
-        {
-          "name": "keep",
-          "codepoint": "0xEB7B"
-        },
-        {
-          "name": "key",
-          "codepoint": "0xEB38"
-        },
-        {
-          "name": "keyboard",
-          "codepoint": "0xEB88"
-        },
-        {
-          "name": "keyboard_arrow_down",
-          "codepoint": "0xEB36"
-        },
-        {
-          "name": "language",
+          "name": "emoji_food_beverage",
           "codepoint": "0xEB7E"
         },
         {
+          "name": "emoji_nature",
+          "codepoint": "0xEB4F"
+        },
+        {
+          "name": "emoji_objects",
+          "codepoint": "0xEB6A"
+        },
+        {
+          "name": "emoji_symbols",
+          "codepoint": "0xEB3A"
+        },
+        {
+          "name": "emoji_transportation",
+          "codepoint": "0xEB50"
+        },
+        {
+          "name": "error",
+          "codepoint": "0xEB59"
+        },
+        {
+          "name": "expand_less",
+          "codepoint": "0xEB8B"
+        },
+        {
+          "name": "expand_more",
+          "codepoint": "0xEB47"
+        },
+        {
+          "name": "flash_on",
+          "codepoint": "0xEB95"
+        },
+        {
+          "name": "flip",
+          "codepoint": "0xEB7C"
+        },
+        {
+          "name": "folder",
+          "codepoint": "0xEB43"
+        },
+        {
+          "name": "format_align_center",
+          "codepoint": "0xEB8C"
+        },
+        {
+          "name": "format_align_left",
+          "codepoint": "0xEB48"
+        },
+        {
+          "name": "format_align_right",
+          "codepoint": "0xEB4B"
+        },
+        {
+          "name": "format_bold",
+          "codepoint": "0xEB8D"
+        },
+        {
+          "name": "format_italic",
+          "codepoint": "0xEB4A"
+        },
+        {
+          "name": "format_size",
+          "codepoint": "0xEB92"
+        },
+        {
+          "name": "format_underlined",
+          "codepoint": "0xEB6F"
+        },
+        {
+          "name": "forward",
+          "codepoint": "0xEB3E"
+        },
+        {
+          "name": "group_add",
+          "codepoint": "0xEB51"
+        },
+        {
+          "name": "image",
+          "codepoint": "0xEB36"
+        },
+        {
+          "name": "info",
+          "codepoint": "0xEB37"
+        },
+        {
+          "name": "ink_eraser",
+          "codepoint": "0xEB64"
+        },
+        {
+          "name": "keep",
+          "codepoint": "0xEB53"
+        },
+        {
+          "name": "key",
+          "codepoint": "0xEB80"
+        },
+        {
+          "name": "keyboard",
+          "codepoint": "0xEB96"
+        },
+        {
+          "name": "keyboard_arrow_down",
+          "codepoint": "0xEB5B"
+        },
+        {
+          "name": "language",
+          "codepoint": "0xEB97"
+        },
+        {
           "name": "laptop_mac",
-          "codepoint": "0xEB86"
+          "codepoint": "0xEB61"
         },
         {
           "name": "laptop_windows",
-          "codepoint": "0xEB45"
+          "codepoint": "0xEB6D"
         },
         {
           "name": "link",
-          "codepoint": "0xEB6B"
+          "codepoint": "0xEB5C"
+        },
+        {
+          "name": "link_off",
+          "codepoint": "0xEB54"
         },
         {
           "name": "lock",
-          "codepoint": "0xEB3D"
+          "codepoint": "0xEB56"
         },
         {
           "name": "logout",
@@ -11746,59 +11774,59 @@
         },
         {
           "name": "mic",
-          "codepoint": "0xEB4F"
+          "codepoint": "0xEB5E"
         },
         {
           "name": "mic_off",
-          "codepoint": "0xEB83"
+          "codepoint": "0xEB57"
         },
         {
           "name": "mood",
-          "codepoint": "0xEB37"
+          "codepoint": "0xEB3F"
         },
         {
           "name": "more_horiz",
-          "codepoint": "0xEB4C"
+          "codepoint": "0xEB98"
         },
         {
           "name": "notifications",
-          "codepoint": "0xEB50"
+          "codepoint": "0xEB67"
         },
         {
           "name": "notifications_off",
-          "codepoint": "0xEB4D"
+          "codepoint": "0xEB99"
         },
         {
           "name": "person",
-          "codepoint": "0xEB6D"
+          "codepoint": "0xEB6C"
         },
         {
           "name": "person_add",
-          "codepoint": "0xEB6E"
-        },
-        {
-          "name": "person_off",
-          "codepoint": "0xEB80"
-        },
-        {
-          "name": "person_remove",
-          "codepoint": "0xEB60"
-        },
-        {
-          "name": "phone_android",
-          "codepoint": "0xEB8D"
-        },
-        {
-          "name": "phone_iphone",
-          "codepoint": "0xEB6F"
-        },
-        {
-          "name": "photo_camera",
           "codepoint": "0xEB71"
         },
         {
+          "name": "person_off",
+          "codepoint": "0xEB34"
+        },
+        {
+          "name": "person_remove",
+          "codepoint": "0xEB8E"
+        },
+        {
+          "name": "phone_android",
+          "codepoint": "0xEB8F"
+        },
+        {
+          "name": "phone_iphone",
+          "codepoint": "0xEB79"
+        },
+        {
+          "name": "photo_camera",
+          "codepoint": "0xEB5D"
+        },
+        {
           "name": "photo_library",
-          "codepoint": "0xEB65"
+          "codepoint": "0xEB63"
         },
         {
           "name": "picture_in_picture_alt",
@@ -11806,55 +11834,63 @@
         },
         {
           "name": "qr_code_scanner",
-          "codepoint": "0xEB3A"
+          "codepoint": "0xEB6B"
         },
         {
           "name": "redeem",
-          "codepoint": "0xEB55"
+          "codepoint": "0xEB90"
         },
         {
           "name": "refresh",
-          "codepoint": "0xEB56"
+          "codepoint": "0xEB35"
         },
         {
           "name": "reply",
-          "codepoint": "0xEB51"
-        },
-        {
-          "name": "rotate_left",
-          "codepoint": "0xEB72"
-        },
-        {
-          "name": "schedule",
-          "codepoint": "0xEB61"
-        },
-        {
-          "name": "search",
           "codepoint": "0xEB66"
         },
         {
+          "name": "rotate_left",
+          "codepoint": "0xEB38"
+        },
+        {
+          "name": "schedule",
+          "codepoint": "0xEB6E"
+        },
+        {
+          "name": "search",
+          "codepoint": "0xEB5F"
+        },
+        {
           "name": "settings",
-          "codepoint": "0xEB74"
+          "codepoint": "0xEB40"
         },
         {
           "name": "share",
-          "codepoint": "0xEB73"
+          "codepoint": "0xEB76"
         },
         {
           "name": "shield_person",
-          "codepoint": "0xEB68"
+          "codepoint": "0xEB42"
         },
         {
           "name": "smart_toy",
-          "codepoint": "0xEB75"
+          "codepoint": "0xEB60"
+        },
+        {
+          "name": "strikethrough_s",
+          "codepoint": "0xEB74"
         },
         {
           "name": "sync",
-          "codepoint": "0xEB8E"
+          "codepoint": "0xEB75"
         },
         {
           "name": "tablet_mac",
           "codepoint": "0xEB77"
+        },
+        {
+          "name": "text_format",
+          "codepoint": "0xEB78"
         },
         {
           "name": "tune",
@@ -11862,27 +11898,27 @@
         },
         {
           "name": "videocam",
-          "codepoint": "0xEB81"
+          "codepoint": "0xEB7B"
         },
         {
           "name": "videocam_off",
-          "codepoint": "0xEB82"
+          "codepoint": "0xEB7D"
         },
         {
           "name": "visibility",
-          "codepoint": "0xEB84"
+          "codepoint": "0xEB7F"
         },
         {
           "name": "visibility_off",
-          "codepoint": "0xEB89"
+          "codepoint": "0xEB82"
         },
         {
           "name": "volume_off",
-          "codepoint": "0xEB8A"
+          "codepoint": "0xEB83"
         },
         {
           "name": "volume_up",
-          "codepoint": "0xEB8F"
+          "codepoint": "0xEB84"
         }
       ]
     }
